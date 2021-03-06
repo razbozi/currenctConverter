@@ -11,26 +11,28 @@ public class mainProgram {
 
         String response = null;
         double result;
-        List <Double> results = new ArrayList<>();
+        List<Double> results = new ArrayList<>();
         File resultsFile = new File("results.txt");
         BufferedWriter writer = new BufferedWriter(new FileWriter(resultsFile));
         USD usd = new USD();
         ILS ils = new ILS();
+        EUR eur = new EUR();
 
         // First screen appearance:
         System.out.printf("Welcome to currency converter %n");
 
         do {
-            System.out.printf("Please choose an option (1/2): %n" +
+            System.out.printf("Please choose an option (1/2/3): %n" +
                     "1.Dollars to Shekels %n" +
-                    "2.Shekels to Dollars %n");
+                    "2.Shekels to Dollars %n" +
+                    "3.Euros to Shekels %n");
             // user input definition
             Scanner input = new Scanner(System.in);
             int choice = input.nextInt();
 
             // while statement in case wrong input is entered
             try {
-                while (choice != 1 && choice != 2) {
+                while (choice != 1 && choice != 2 && choice != 3) {
                     System.out.println("Invalid choice, please try again");
                     choice = input.nextInt();
                 }
@@ -41,11 +43,16 @@ public class mainProgram {
                     System.out.printf("Your amounts in Shekels are " + result + "%n");
                     results.add(result);
 
-
                 } else if (choice == 2) {
                     System.out.println("Please enter Shekel amount to convert to Dollar");
                     result = ils.calculate(input.nextDouble());
                     System.out.printf("Your amounts in Dollar are %.2f\n", result);
+                    results.add(result);
+
+                } else if (choice == 3) {
+                    System.out.println("Please enter Shekel amount to convert to Euro");
+                    result = eur.calculate(input.nextDouble());
+                    System.out.printf("Your amounts in Shekels are %.2f\n" , result);
                     results.add(result);
                 }
 
@@ -73,25 +80,10 @@ public class mainProgram {
                 e.printStackTrace();
             }
         }
-
-        while (response.equalsIgnoreCase("y")) ;
+        while (response.equalsIgnoreCase("y"));
         System.out.println("Your conversion results are: " + results);
 
         writer.write(String.valueOf(results));
         writer.close();
-
-
-
     }
 }
-
-
-
-
-
-
-
-
-
-
-
