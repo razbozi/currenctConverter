@@ -1,5 +1,4 @@
-//public interface Icalculate {
-//    static double calculate (double input){
-//        return double value;
-//    }
-//}
+public interface Icalculate {
+     double calculate(double value) ;
+}
+
